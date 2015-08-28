@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>Basic MEAN</title>
+
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/styles/styles.css" rel="stylesheet">
+
+  <script src="/libs/js/angular.js"></script>
+  <script src="/libs/js/angular-route.js"></script>
+  <script src="/scripts/app.js"></script>
+</head>
+<body ng-app="app">
+
+  <!-- HEADER -->
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/child">Child</a></li>
+    </ul>
+  </nav>
+
+  <div>
+    <ng-view></ng-view>
+  </div>
+
+</body>
+</html>
