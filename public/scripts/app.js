@@ -4,7 +4,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
   $routeProvider
     .when('/', {
       templateUrl: 'views/home.html',
-      controller: 'mainCtrl'
+      controller: 'postsCtrl'
     })
     .when('/child', {
       templateUrl: 'views/child.html',
@@ -15,10 +15,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       enabled: true,
       requireBase: false
     });
-}]);
-
-app.controller('mainCtrl', ['$scope', function($scope){
-  $scope.title = 'Hello World';
 }]);
 
 app.controller('childCtrl', ['$scope', function($scope){
