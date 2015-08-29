@@ -2,7 +2,7 @@
   margin-left: 40px;
 }
 
-.glyphicon-thumbs-up{
+.glyphicon-remove, .glyphicon-thumbs-up, .glyphicon-comment{
   cursor: pointer;
   margin-left: 10px;
 }

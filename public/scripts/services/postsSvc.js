@@ -1,36 +1,19 @@
-app.factory('postsSvc', [function(){
-  var o = [
-    {
-      title: 'google',
-      link: 'google.com',
-      upvotes: 6,
-      comments: [
-        {
-          body: 'This site is awesome',
-          author: 'Nguyen Quyet'
-        },
-        {
-          body: 'This site is crap',
-          author: 'Nguyen Huy'
-        }
-      ]
+app.factory('postsSvc', ['$http', function($http){
+  return {
+    getAll: function(){
+      return $http.get('/api/posts');
     },
-    {
-      title: 'youtube',
-      link: 'youtube.com',
-      upvotes: 5,
-      comments: [
-        {
-          body: 'let\'s watch porn ',
-          author: 'Nguyen Quyet'
-        },
-        {
-          body: 'This site is fuckin awesome',
-          author: 'Nguyen Huy'
-        }
-      ]
+    getPost: function(postId){
+      return $http.get('/api/posts/' + postId);
+    },
+    createPost: function(post){
+      return $http.post('/api/posts', post);
+    },
+    updatePost: function(postId, post){
+      return $http.put('/api/posts/' + postId, post)
+    },
+    deletePost: function(postId){
+      return $http.delete('/api/posts/' + postId);
     }
-  ];
-
-  return o;
+  };
 }]);
