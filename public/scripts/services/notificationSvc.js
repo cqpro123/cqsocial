@@ -1,4 +1,11 @@
-app.factory('notificationSvc', ['toastr', function(toastr){
+
+angular
+  .module('app')
+  .factory('notificationSvc', notificationSvc);
+
+notificationSvc.$inject = ['toastr'];
+
+function notificationSvc(toastr){
   return {
     success: function(text){
       toastr.success(text, 'success');
@@ -7,4 +14,4 @@ app.factory('notificationSvc', ['toastr', function(toastr){
       toastr.error(text, 'error');
     }
   };
-}]);
+}

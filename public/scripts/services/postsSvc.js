@@ -1,4 +1,11 @@
-app.factory('postsSvc', ['$http', function($http){
+
+angular
+  .module('app')
+  .factory('postsSvc', postsSvc);
+
+postsSvc.$inject = ['$http'];
+
+function postsSvc($http){
   return {
     getAll: function(){
       return $http.get('/api/posts');
@@ -14,6 +21,9 @@ app.factory('postsSvc', ['$http', function($http){
     },
     deletePost: function(postId){
       return $http.delete('/api/posts/' + postId);
+    },
+    upvote: function(postId){
+      return $http.put('/api/posts/' + postId + '/upvote');
     }
   };
-}]);
+}

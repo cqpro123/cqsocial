@@ -1,0 +1,7 @@
+<div>
+  <span class="badge">{{postObj.upvotes}}</span>
+  <span class="glyphicon glyphicon-remove" confirm-click="deletePostFunc({ post: postObj})" confirm-msg="Are you sure you want to delete this post?"></span>
+  <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotesFunc({ post: postObj})"></span>
+  <span class="glyphicon glyphicon-comment"></span>
+  <span class="title">{{postObj.title}}</span>
+</div>
