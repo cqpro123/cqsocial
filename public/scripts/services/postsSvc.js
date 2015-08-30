@@ -24,6 +24,9 @@ function postsSvc($http){
     },
     upvote: function(postId){
       return $http.put('/api/posts/' + postId + '/upvote');
+    },
+    createComment: function(postId, comment){
+      return $http.post('/api/posts/' + postId + '/comments', comment);
     }
   };
 }

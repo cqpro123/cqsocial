@@ -70,7 +70,7 @@ router.route('/:post_id/upvote')
   });
 
 router.route('/:post_id/comments')
-
+  
   .post(function(req, res, next){
     var comment = new Comment(req.body);
     comment.post = req.post;
@@ -81,6 +81,15 @@ router.route('/:post_id/comments')
         if(err){ return next(err); }
         res.json(comment);
       });
+    });
+  });
+
+router.route('/:post_id/comments/:comment_id')
+  
+  .get(function(req, res, next){
+    Comment.findById(req.params.comment_id, function(err, comment){
+      if(err){ return next(err); }
+      res.json(comment);
     });
   });
 

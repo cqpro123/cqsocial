@@ -10,3 +10,15 @@
 .badge{
   float: right;
 }
+
+.post{
+  margin-bottom: 15px;
+}
+
+.comment{
+
+}
+
+.hidden{
+  display: hidden
+}

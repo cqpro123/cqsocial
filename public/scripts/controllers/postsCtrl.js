@@ -13,12 +13,6 @@ function postsCtrl($scope, postsSvc, notificationSvc){
   $scope.deletePost = deletePost;
   $scope.incrementUpvotes = incrementUpvotes;
 
-
-  $scope.test = function(){
-    console.log(111);
-  }
-
-
   function getAllPosts(){
     postsSvc.getAll().success(function(data){
       $scope.posts = data;
