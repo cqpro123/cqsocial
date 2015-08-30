@@ -14,7 +14,7 @@ function postsCtrl($scope, postsSvc, notificationSvc){
   $scope.incrementUpvotes = incrementUpvotes;
 
   function getAllPosts(){
-    postsSvc.getAll().success(function(data){
+    postsSvc.getAllPosts().success(function(data){
       $scope.posts = data;
     });
   }

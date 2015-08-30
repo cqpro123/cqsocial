@@ -16,7 +16,13 @@
 }
 
 .comment{
+  transition: height 1.5s ease-in-out;
+  height: 0px;
+  overflow: hidden;
+}
 
+.comment.active{
+  height: auto;
 }
 
 .hidden{

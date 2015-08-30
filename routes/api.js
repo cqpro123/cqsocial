@@ -71,6 +71,17 @@ router.route('/:post_id/upvote')
 
 router.route('/:post_id/comments')
   
+  .get(function(req, res, next){
+    Comment.find(function(err, comments){
+      if(err){ return next(err); }
+      var commentsInPost = comments.filter(function(item){
+        console.log(item.post, req.params.post_id);
+        return item.post == req.params.post_id;
+      });
+      res.json(commentsInPost);
+    });
+  })
+  
   .post(function(req, res, next){
     var comment = new Comment(req.body);
     comment.post = req.post;

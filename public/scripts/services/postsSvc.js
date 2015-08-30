@@ -7,7 +7,7 @@ postsSvc.$inject = ['$http'];
 
 function postsSvc($http){
   return {
-    getAll: function(){
+    getAllPosts: function(){
       return $http.get('/api/posts');
     },
     getPost: function(postId){
@@ -25,8 +25,14 @@ function postsSvc($http){
     upvote: function(postId){
       return $http.put('/api/posts/' + postId + '/upvote');
     },
+    getAllComments: function(postId){
+      return $http.get('/api/posts/' + postId + '/comments');
+    },
     createComment: function(postId, comment){
       return $http.post('/api/posts/' + postId + '/comments', comment);
+    },
+    getComment: function(postId, commentId){
+      return $http.post('/api/posts/' + postId + '/comments' + commentId);
     }
   };
 }

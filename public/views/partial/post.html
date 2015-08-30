@@ -4,12 +4,12 @@
   <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotesFunc({ post: postObj})"></span>
   <span class="glyphicon glyphicon-comment"></span>
   <span class="title">{{postObj.title}}</span>
-  <div class="comment hidden">
+  <div class="comment">
     <form id="post-comment" ng-submit="postComment(postObj)">
-      <input class="form-control" ng-model="commentBody" type="text"/>
+      <input class="form-control" ng-model="commentBody" type="text" placeholder="comment....."/>
     </form>
     <ul ng-repeat="cmt in postObj.comments">
-      <li>{{cmt}}</li>
+      <li>{{cmt.body}}</li>
     </ul>
   </div>
 </div>
