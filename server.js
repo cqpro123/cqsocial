@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var mongoose = require('mongoose');                 //Working with mongodb
+var passport = require('passport');
 var morgan = require('morgan');                     //Log request to console
 var bodyParser = require('body-parser');            //Pull information from HTML POST
 var methodOverride = require('method-override');    //Simulate DELETE and PUT
@@ -19,6 +20,9 @@ app.set('view engine', 'ejs');
 var dbConfig = require('./configs/db');
 require('./models/Posts');
 require('./models/Comments');
+require('./models/Users');
+require('./configs/passport');
+app.use(passport.initialize());
 mongoose.connect(dbConfig.url);
 
 

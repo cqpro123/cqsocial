@@ -3,10 +3,12 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 var Comment = mongoose.model('Comment');
+var jwt = require('express-jwt');
+var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 router.route('/')
 
-  .post(function(req, res, next){
+  .post(auth, function(req, res, next){
     var post = new Post();
     post.title = req.body.title || post.title;
     post.link = req.body.link || post.link;
@@ -96,7 +98,7 @@ router.route('/:post_id/comments')
   });
 
 router.route('/:post_id/comments/:comment_id')
-  
+
   .get(function(req, res, next){
     Comment.findById(req.params.comment_id, function(err, comment){
       if(err){ return next(err); }

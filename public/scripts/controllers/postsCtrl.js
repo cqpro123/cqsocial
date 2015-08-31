@@ -8,7 +8,7 @@ postsCtrl.$inject = ['$scope', 'postsSvc', 'notificationSvc'];
 function postsCtrl($scope, postsSvc, notificationSvc){
   $scope.posts = [];
   getAllPosts();
-  
+
   $scope.addNewPost = addNewPost;
   $scope.deletePost = deletePost;
   $scope.incrementUpvotes = incrementUpvotes;
