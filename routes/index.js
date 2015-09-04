@@ -4,15 +4,12 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var router = express.Router();
+var appDir = path.dirname(require.main.filename);
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
   console.log('Something is happening.');
   next(); // make sure we go to the next routes and don't stop here
-});
-
-router.get('*', function(req, res){
-  res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 });
 
 router.post('/login', function(req, res, next){
@@ -43,6 +40,10 @@ router.post('/register', function(req, res, next){
     if(err){ return next(err); }
     return res.json({token: user.generateJWT()});
   });
+});
+
+router.get('*', function(req, res){
+  res.sendFile('index.html', {root: path.join(appDir, 'public')});
 });
 
 module.exports = router;

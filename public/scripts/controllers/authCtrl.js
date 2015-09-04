@@ -3,9 +3,9 @@ angular
   .module('app')
   .controller('authCtrl', authCtrl);
 
-authCtrl.$inject = ['$scope', 'authSvc', '$location'];
+authCtrl.$inject = ['$scope', 'authSvc', '$location', 'notificationSvc'];
 
-function authCtrl($scope, authSvc, $location){
+function authCtrl($scope, authSvc, $location, notificationSvc){
   $scope.user = {};
 
   $scope.register = register;
@@ -13,7 +13,7 @@ function authCtrl($scope, authSvc, $location){
 
   function register(){
     authSvc.register($scope.user).error(function(error){
-      $scope.error = error;
+      notificationSvc.error(error.message);
     }).then(function(){
       $location.path('/');
     });
@@ -21,7 +21,7 @@ function authCtrl($scope, authSvc, $location){
 
   function logIn(){
     authSvc.logIn($scope.user).error(function(error){
-      $scope.error = error;
+      notificationSvc.error(error.message);
     }).then(function(){
       $location.path('/');
     });

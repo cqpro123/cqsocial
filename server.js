@@ -38,8 +38,8 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json'}));    // parse appli
 // require('./routes')(app, publicDir);
 var indexRoute = require('./routes/index');
 var apiRoute = require('./routes/api');
-app.get('/', indexRoute);
 app.use('/api/posts', apiRoute);
+app.get('*', indexRoute);
 
 // error handler ============================================================================================
 // catch 404 and forward to error handler
