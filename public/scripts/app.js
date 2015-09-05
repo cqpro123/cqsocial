@@ -1,24 +1,39 @@
-var app = angular.module('app', ['ui.route', 'toastr']);
+var app = angular.module('app', ['ui.router', 'toastr']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, urlRouterProvider, $locationProvider){
+app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
   $stateProvider
-    .state({
+    .state('home', {
       url: '/',
       templateUrl: 'views/home.html',
-      controller: 'postCtrl'
+      controller: 'postsCtrl',
+      onEnter: ['$state', 'authSvc', function($state, authSvc){
+        if(!authSvc.isLoggedIn()){
+          $state.go('login');
+        }
+      }]
     })
-    .state({
-      url: '/register',
-      templateUrl: 'views/register.html',
-      controller: 'authCtrl'
-    })
-    .state({
+    .state('login', {
       url: '/login',
       templateUrl: 'views/login.html',
-      controller: 'authCtrl'
+      controller: 'authCtrl',
+      onEnter: ['$state', 'authSvc', function($state, authSvc){
+        if(authSvc.isLoggedIn()){
+          $state.go('home');
+        }
+      }]
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'views/register.html',
+      controller: 'authCtrl',
+      onEnter: ['$state', 'authSvc', function($state, authSvc){
+        if(authSvc.isLoggedIn()){
+          $state.go('home');
+        }
+      }]
     });
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode({
       enabled: true,

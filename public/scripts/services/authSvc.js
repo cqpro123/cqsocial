@@ -7,7 +7,7 @@ authSvc.$inject = ['$http', '$window'];
 
 function authSvc($http, $window){
   var auth = {
-    saveToken: function(){
+    saveToken: function(token){
       $window.localStorage['app-token'] = token;
     },
     getToken: function(){
@@ -37,6 +37,9 @@ function authSvc($http, $window){
       return $http.post('/login', user).success(function(data){
         auth.saveToken(data.token);
       });
+    },
+    logOut: function(){
+      $window.localStorage.removeItem('app-token');
     }
   };
   return auth;
