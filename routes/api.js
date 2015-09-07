@@ -64,7 +64,7 @@ router.route('/:post_id')
 
 router.route('/:post_id/upvote')
 
-  .put(function(req, res, next){
+  .put(auth, function(req, res, next){
     req.post.upvote(function(err, post){
       if(err){ return next(err)};
       res.json(post);
@@ -77,7 +77,6 @@ router.route('/:post_id/comments')
     Comment.find(function(err, comments){
       if(err){ return next(err); }
       var commentsInPost = comments.filter(function(item){
-        console.log(item.post, req.params.post_id);
         return item.post == req.params.post_id;
       });
       res.json(commentsInPost);

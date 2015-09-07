@@ -8,7 +8,7 @@
     <form id="post-comment" ng-submit="postComment(postObj)">
       <input class="form-control" ng-model="commentBody" type="text" placeholder="comment....."/>
     </form>
-    <ul ng-repeat="cmt in postObj.comments">
+    <ul ng-repeat="cmt in postObj.comments | reverse">
       <li>{{cmt.body}}</li>
     </ul>
   </div>
