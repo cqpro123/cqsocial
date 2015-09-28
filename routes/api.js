@@ -43,7 +43,7 @@ router.route('/:post_id')
       res.json(req.post);
   })
 
-  .put(function(req, res, next){
+  .put(auth, function(req, res, next){
     var post = req.post;
     post.title = req.body.title || post.title;
     post.link = req.body.link || post.link;
@@ -53,7 +53,7 @@ router.route('/:post_id')
     });
   })
 
-  .delete(function(req, res, next){
+  .delete(auth, function(req, res, next){
     Post.remove({
       _id: req.params.post_id
     }, function(err, post){
@@ -65,6 +65,9 @@ router.route('/:post_id')
 router.route('/:post_id/upvote')
 
   .put(auth, function(req, res, next){
+    // console.log('auth:', auth);
+    // console.log('payload', req.payload);
+    // return;
     req.post.upvote(function(err, post){
       if(err){ return next(err)};
       res.json(post);
@@ -83,9 +86,10 @@ router.route('/:post_id/comments')
     });
   })
   
-  .post(function(req, res, next){
+  .post(auth, function(req, res, next){
     var comment = new Comment(req.body);
     comment.post = req.post;
+    comment.author = req.payload.username;
 
     comment.save(function(err, comment){
       req.post.comments.push(comment);

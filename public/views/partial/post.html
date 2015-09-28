@@ -9,7 +9,7 @@
       <input class="form-control" ng-model="commentBody" type="text" placeholder="comment....."/>
     </form>
     <ul ng-repeat="cmt in postObj.comments | reverse">
-      <li>{{cmt.body}}</li>
+      <li>{{cmt.author}}: {{cmt.body}}</li>
     </ul>
   </div>
 </div>
